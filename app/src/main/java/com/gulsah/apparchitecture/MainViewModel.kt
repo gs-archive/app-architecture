@@ -1,19 +1,26 @@
 package com.gulsah.apparchitecture
 
 import android.util.Log
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 
 class MainViewModel : ViewModel() {
-    //sadece viewmodel değiştirebilir, bu aynı zamanda state
-    private var counter = 0
-
-
-
-    fun onClickMeButton(){
-        counter++
+    private val _counter = MutableLiveData<Int>()
+    //get olmadan da oluyor!!
+    val counter : LiveData<Int> get() = _counter
+    init {
+        _counter.value = 0
     }
-    //view'da hiçbir şey olmaması gerektiği için counter ı string e dönüştürüp mainActivity'ye veriyoruz
-    fun counter() = counter.toString()
+
+    fun onAddOneButtonClick(){
+        _counter.value = _counter.value!!+1
+    }
+    fun onAddTenButtonClick(){
+        _counter.value = _counter.value!!+10
+    }
+
+
 
 
 }
