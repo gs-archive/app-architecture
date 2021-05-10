@@ -18,8 +18,9 @@ class MainActivity : AppCompatActivity() {
         val addTenButton : Button = findViewById(R.id.addTenButton)
 
 
-        viewModel.counter.observe(this){
-            counterText.text = it.toString()
+        viewModel.counterString.observe(this){
+            //toString i kaldırdık
+            counterText.text = it
         }
 
         addOneButton.setOnClickListener {
